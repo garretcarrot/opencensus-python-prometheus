@@ -18,6 +18,11 @@ m_line_lengths = measure.MeasureInt("repl_line_lengths", "The distributes of lin
 # Make the thing that records the measurements
 stats_recorder = stats.Stats().stats_recorder
 
+# Make some tag keys
+method_key = tag_key.TagKey("method")
+status_key = tag_key.TagKey("status")
+error_key = tag_key.TagKey("error")
+
 def main():
     while True:
         readEvalPrint()
@@ -36,6 +41,14 @@ def readEvalPrint():
 
     # Record the line length
     measure_map.measure_int_put(m_line_lengths, len(line))
+
+    # Get a thing to store tag values
+    tags = tag_map.TagMap()
+    tags.insert(method_key, tag_value.TagValue("repl"))
+    tags.insert(status_key, tag_value.TagValue("OK"))
+
+    # Record the tag values
+    measure_map.record(tags)
 
 if __name__ == "__main__":
     main()
