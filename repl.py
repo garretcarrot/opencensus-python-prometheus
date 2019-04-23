@@ -68,6 +68,7 @@ line_length_view = view.View(
 
 
 def main():
+    registerViews()
     while True:
         readEvalPrint()
 
@@ -94,6 +95,12 @@ def readEvalPrint():
 
     # Record the tag values
     measurements.record(tags)
+
+
+def registerViews():
+    stats.view_manager.register_view(latency_view)
+    stats.view_manager.register_view(line_count_view)
+    stats.view_manager.register_view(line_length_view)
 
 
 if __name__ == "__main__":
