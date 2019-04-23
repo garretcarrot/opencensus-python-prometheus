@@ -33,14 +33,14 @@ def readEvalPrint():
     print(line.upper())
 
     # Make a thing to store measurements
-    measure_map = stats_recorder.new_measurement_map()
+    measurements = stats_recorder.new_measurement_map()
 
     # Record the duration
     end_ms = (time.time() - start) * 1000.0
-    measure_map.measure_float_put(m_latency_ms, end_ms)
+    measurements.measure_float_put(m_latency_ms, end_ms)
 
     # Record the line length
-    measure_map.measure_int_put(m_line_lengths, len(line))
+    measurements.measure_int_put(m_line_lengths, len(line))
 
     # Get a thing to store tag values
     tags = tag_map.TagMap()
@@ -48,7 +48,7 @@ def readEvalPrint():
     tags.insert(status_key, tag_value.TagValue("OK"))
 
     # Record the tag values
-    measure_map.record(tags)
+    measurements.record(tags)
 
 if __name__ == "__main__":
     main()
