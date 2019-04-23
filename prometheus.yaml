@@ -1,7 +1,7 @@
 scrape_configs:
-- job_name: 'ocpythonmetrics_tutorial'
+  - job_name: 'ocpythonmetrics_tutorial'
 
-scrape_interval: 10s
+    scrape_interval: 10s
 
-static_configs:
-- targets: ['localhost:8000']
+    static_configs:
+      - targets: ['localhost:8000']
