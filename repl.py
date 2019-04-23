@@ -7,6 +7,7 @@ from opencensus.stats import aggregation
 from opencensus.stats import measure
 from opencensus.stats import stats
 from opencensus.stats import view
+from opencensus.stats.exporters import prometheus_exporter
 from opencensus.tags import tag_key
 from opencensus.tags import tag_map
 from opencensus.tags import tag_value
@@ -98,6 +99,10 @@ def readEvalPrint():
 
 
 def registerViews():
+    exporter = prometheus_exporter.new_stats_exporter(
+        prometheus_exporter.Options(namespace="oc_python", port=8000)
+    )
+    stats.view_manager.register_exporter(exporter)
     stats.view_manager.register_view(latency_view)
     stats.view_manager.register_view(line_count_view)
     stats.view_manager.register_view(line_length_view)
