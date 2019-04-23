@@ -16,7 +16,7 @@ m_latency_ms = measure.MeasureFloat("repl_latency", "The latency in millisecnds 
 m_line_lengths = measure.MeasureInt("repl_line_lengths", "The distributes of line lengths", "By")
 
 # Make the thing that records the measurements
-stats_recorder = stats.Stats().stats_recorder
+stats_recorder = stats.stats.stats_recorder
 
 # Make some tag keys
 method_key = tag_key.TagKey("method")
