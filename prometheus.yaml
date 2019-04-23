@@ -1,13 +1,7 @@
-global:
-  scrape_interval: 10s
-
-  external_labels:
-    monitor: 'media_search'
-
 scrape_configs:
-  - job_name: 'media_search'
+- job_name: 'ocpythonmetrics_tutorial'
 
-    scrape_interval: 10s
+scrape_interval: 10s
 
-    static_configs:
-      - targets: ['localhost:9888', 'localhost:9988', 'localhost:9989']
+static_configs:
+- targets: ['localhost:8000']
