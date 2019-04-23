@@ -19,8 +19,11 @@ m_line_lengths = measure.MeasureInt(
     "repl_line_lengths", "The distributes of line lengths", "By"
 )
 
+# Get the stats object
+stats = stats.stats
+
 # Make the thing that records the measurements
-stats_recorder = stats.stats.stats_recorder
+stats_recorder = stats.stats_recorder
 
 # Make some tag keys
 method_key = tag_key.TagKey("method")
