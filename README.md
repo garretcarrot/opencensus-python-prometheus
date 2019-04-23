@@ -20,7 +20,7 @@ Deps:
 
 ```bash
 pip install --upgrade pip
-pip install --upgrade opencensus prometheus-client
+pip install --upgrade opencensus prometheus-client opencensus-ext-prometheus
 ```
 
 ## What
