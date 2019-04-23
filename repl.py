@@ -27,6 +27,42 @@ method_key = tag_key.TagKey("method")
 status_key = tag_key.TagKey("status")
 error_key = tag_key.TagKey("error")
 
+# Set up views
+
+latency_view = view.View(
+    "demo_latency",
+    "The distro of latencies",
+    [method_key, status_key, error_key],
+    m_latency_ms,
+    # Latency in buckets:
+    # [>=0ms, >=25ms, >=50ms, >=75ms, >=100ms, >=200ms, >=400ms, >=600ms,
+    #  >=800ms, >=1s, >=2s, >=4s, >=6s]
+    aggregation.DistributionAggregation(
+        [0, 25, 50, 75, 100, 200, 400, 600, 800, 1000, 2000, 4000, 6000]
+    ),
+)
+
+line_count_view = view.View(
+    "demo_lines_in",
+    "The number of lines from stdin",
+    [method_key, status_key, error_key],
+    m_line_lengths,
+    aggregation.CountAggregation(),
+)
+
+line_length_view = view.View(
+    "demo_line_lengths",
+    "Groups lengths of keys in buckets",
+    [method_key, status_key, error_key],
+    m_line_lengths,
+    # Lengths:
+    # [>=0B, >=5B, >=10B, >=15B, >=20B, >=40B, >=60B, >=80B, >=100B, >=200B,
+    #  >=400B, >=600B, >=800B, >=1MB]
+    aggregation.DistributionAggregation(
+        [0, 5, 10, 15, 20, 40, 60, 80, 100, 200, 400, 600, 800, 1000]
+    ),
+)
+
 
 def main():
     while True:
