@@ -17,7 +17,9 @@ m_latency_ms = measure.MeasureFloat(
     "repl_latency", "The latency in millisecnds per REPL loop", "ms"
 )
 m_line_lengths = measure.MeasureInt(
-    "repl_line_lengths", "The distributes of line lengths", "By"
+    "repl_line_lengths",
+    "The distributes of line lengths",
+    "By",  # this means "Bytes"
 )
 
 # Get the stats object
